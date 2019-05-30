@@ -3,16 +3,20 @@ package com.weishu.upf.ams_pms_hook.app;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+
+import java.util.List;
 
 /**
  * @author weishu
  * @date 16/3/7
  */
-public class MainActivity extends Activity implements OnClickListener{
+public class MainActivity extends Activity implements OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +48,8 @@ public class MainActivity extends Activity implements OnClickListener{
                 break;
             case R.id.btn2:
                 // 测试PMS HOOK (调用其相关方法)
-                getPackageManager().getInstalledApplications(0);
+                List<ApplicationInfo> ais = getPackageManager().getInstalledApplications(0);
+                Log.i("sanbo.test","PM:" +ais.size()+"-----"+ais.toString());
                 break;
         }
     }

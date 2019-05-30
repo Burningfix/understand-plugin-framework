@@ -1,25 +1,25 @@
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:1.2.3'
-    }
-}
+//buildscript {
+//    repositories {
+//        jcenter()
+//    }
+//    dependencies {
+//        classpath 'com.android.tools.build:gradle:1.2.3'
+//    }
+//}
 apply plugin: 'com.android.application'
 
-repositories {
-    jcenter()
-}
+//repositories {
+//    jcenter()
+//}
 
 android {
-    compileSdkVersion 19
-    buildToolsVersion "23.0.2"
+    compileSdkVersion 25
+    buildToolsVersion "25.0.3"
 
     defaultConfig {
         applicationId "com.weishu.intercept_activity.app"
-        minSdkVersion 8
-        targetSdkVersion 19
+        minSdkVersion 22
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
     }
@@ -34,7 +34,35 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    dexOptions {
+        dexInProcess true
+        jumboMode true
+        preDexLibraries true
+        maxProcessCount 8
+        javaMaxHeapSize "4g"
+    }
+    aaptOptions {
+        cruncherEnabled = false
+        useNewCruncher = false
+    }
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+        warningsAsErrors false
+        disable "UnusedResources"
+        textOutput "stdout"
+        textReport false
+        disable 'RestrictedApi'
+    }
 }
+
+// 忽略文档编译错误. 设置编码
+tasks.withType(Javadoc) {
+    options.addStringOption('Xdoclint:none', '-quiet')
+    options.addStringOption('encoding', 'UTF-8')
+    options.addStringOption('charSet', 'UTF-8')
+}
+
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])

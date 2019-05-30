@@ -12,7 +12,7 @@ import android.util.Log;
  */
 class HookHandler implements InvocationHandler {
 
-    private static final String TAG = "HookHandler";
+    private static final String TAG = "sanbo.HookHandler";
 
     private Object mBase;
 
