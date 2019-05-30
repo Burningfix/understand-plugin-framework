@@ -1,5 +1,7 @@
 package com.weishu.upf.service_management.app.hook;
 
+import android.os.Build;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Proxy;
@@ -54,13 +56,18 @@ public class AMSHookHelper {
         //            39}
         //        40
 
-        Class<?> activityManagerNativeClass = Class.forName("android.app.ActivityManagerNative");
-
-        Field gDefaultField = activityManagerNativeClass.getDeclaredField("gDefault");
+        Field gDefaultField = null;
+        if (Build.VERSION.SDK_INT >= 26) {
+            Class<?> activityManager = Class.forName("android.app.ActivityManager");
+            gDefaultField = activityManager.getDeclaredField("IActivityManagerSingleton");
+        } else {
+            Class<?> activityManagerNativeClass = Class.forName("android.app.ActivityManagerNative");
+            gDefaultField = activityManagerNativeClass.getDeclaredField("gDefault");
+        }
+        gDefaultField.setAccessible(true);
         gDefaultField.setAccessible(true);
 
         Object gDefault = gDefaultField.get(null);
-
         // gDefault是一个 android.util.Singleton对象; 我们取出这个单例里面的字段
         Class<?> singleton = Class.forName("android.util.Singleton");
         Field mInstanceField = singleton.getDeclaredField("mInstance");

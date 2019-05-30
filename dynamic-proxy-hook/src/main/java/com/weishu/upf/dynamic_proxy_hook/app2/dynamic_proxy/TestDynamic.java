@@ -1,5 +1,7 @@
 package com.weishu.upf.dynamic_proxy_hook.app2.dynamic_proxy;
 
+import android.util.Log;
+
 import com.weishu.upf.dynamic_proxy_hook.app2.Shopping;
 import com.weishu.upf.dynamic_proxy_hook.app2.ShoppingImpl;
 
@@ -15,7 +17,7 @@ public class TestDynamic {
         Shopping women = new ShoppingImpl();
 
         // 正常购物
-        System.out.println(Arrays.toString(women.doShopping(100)));
+        Log.v("sanbo.TestDynamic", "正常购物 : " + Arrays.toString(women.doShopping(100)));
 
         // 招代理
         women = (Shopping) Proxy.newProxyInstance(Shopping.class.getClassLoader(),

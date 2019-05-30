@@ -50,7 +50,7 @@ public class ProviderHelper {
         Method generateProviderInfo = packageParserClass.getDeclaredMethod("generateProviderInfo",
                 packageParser$ProviderClass, int.class, packageUserStateClass, int.class);
 
-        List<ProviderInfo> ret = new ArrayList<>();
+        List<ProviderInfo> ret = new ArrayList<ProviderInfo>();
         // 解析出intent对应的Provider组件
         for (Object service : providers) {
             ProviderInfo info = (ProviderInfo) generateProviderInfo.invoke(packageParser, service, 0, defaultUserState, userId);

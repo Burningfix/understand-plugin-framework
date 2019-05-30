@@ -1,5 +1,7 @@
 package com.weishu.upf.dynamic_proxy_hook.app2.dynamic_proxy;
 
+import android.util.Log;
+
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
@@ -20,7 +22,7 @@ public class ShoppingHandler implements InvocationHandler {
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-
+        Log.v("sanbo.ShoppingHandler", "invoke method: " + method.getName());
         if ("doShopping".equals(method.getName())) {
             // 这里是代理Shopping接口的对象
 
@@ -28,8 +30,8 @@ public class ShoppingHandler implements InvocationHandler {
             Long money = (Long) args[0];
             long readCost = (long) (money * 0.5);
 
-            System.out.println(String.format("花了%s块钱", readCost));
 
+            Log.i("sanbo.ShoppingHandler", "invoke readCost: " + String.format("花了%s块钱", readCost));
             // 帮忙买东西
             Object[] things = (Object[]) method.invoke(base, readCost);
 

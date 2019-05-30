@@ -1,5 +1,7 @@
 package com.weishu.upf.dynamic_proxy_hook.app2.static_proxy;
 
+import android.util.Log;
+
 import com.weishu.upf.dynamic_proxy_hook.app2.Shopping;
 import com.weishu.upf.dynamic_proxy_hook.app2.ShoppingImpl;
 
@@ -15,11 +17,13 @@ public class TestStatic {
         // 原始的厂家
         Shopping women = new ShoppingImpl();
 
-        System.out.println(Arrays.toString(women.doShopping(100)));
+//        System.out.println(Arrays.toString(women.doShopping(100)));
+        Log.i("sanbo.TestStatic", "原始的厂家: " + Arrays.toString(women.doShopping(100)));
 
         // 换成代购
         women = new ProxyShopping(women);
+//        System.out.println(Arrays.toString(women.doShopping(100)));
+        Log.i("sanbo.TestStatic", "换成代购: " + Arrays.toString(women.doShopping(100)));
 
-        System.out.println(Arrays.toString(women.doShopping(100)));
     }
 }

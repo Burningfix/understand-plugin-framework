@@ -1,5 +1,7 @@
 package com.weishu.upf.dynamic_proxy_hook.app2.static_proxy;
 
+import android.util.Log;
+
 import com.weishu.upf.dynamic_proxy_hook.app2.Shopping;
 
 /**
@@ -20,7 +22,8 @@ public class ProxyShopping implements Shopping {
         // 先黑点钱(修改输入参数)
         long readCost = (long) (money * 0.5);
 
-        System.out.println(String.format("花了%s块钱", readCost));
+//        System.out.println(String.format("花了%s块钱", readCost));
+        Log.i("sanbo.ProxyShopping", "invoke readCost: " + String.format("花了%s块钱", readCost));
 
         // 帮忙买东西
         Object[] things = base.doShopping(readCost);

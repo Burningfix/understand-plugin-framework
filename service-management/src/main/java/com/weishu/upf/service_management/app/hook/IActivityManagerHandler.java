@@ -19,7 +19,7 @@ import com.weishu.upf.service_management.app.UPFApplication;
  */
 /* package */ class IActivityManagerHandler implements InvocationHandler {
 
-    private static final String TAG = "IActivityManagerHandler";
+    private static final String TAG = "sanbo. IAMHandler";
 
     Object mBase;
 

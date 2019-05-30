@@ -16,7 +16,7 @@ import java.lang.reflect.Method;
  */
 public class EvilInstrumentation extends Instrumentation {
 
-    private static final String TAG = "EvilInstrumentation";
+    private static final String TAG = "sanbo.EvilInst";
 
     // ActivityThread中原始的对象, 保存起来
     Instrumentation mBase;
